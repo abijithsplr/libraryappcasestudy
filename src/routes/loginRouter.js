@@ -1,6 +1,6 @@
 const express = require("express");
 const loginRouter = express.Router();
-const userdata = require('../model/userdata');
+const userdata = require('../model/userData');
 const currentUserData = require('../model/currentuser');
 function login(nav) {
 

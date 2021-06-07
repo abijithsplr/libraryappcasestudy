@@ -5,7 +5,7 @@ const currentUserData = require('./src/model/currentuser');
 // const multer = require('multer');
 const fileUpload = require('express-fileupload');
 const port =process.env.PORT ||5000;
-const nav = [
+var nav = [
   {
     link: '/login',
     name: 'LOGIN | SIGNUP'
