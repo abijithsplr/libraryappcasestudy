@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%=title%>
+  </title>
+  <link rel="stylesheet" href="/css/bootstrap.min1.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/styles2.css">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-states">
+      <div class="container-fluid container">
+        <a class="navbar-nav nav-link me-auto mybrand" href="/">
+          HOME
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <% if (role=="admin"){ %> 
+            <%for(i=0;i<newnav.length;i++){%>
+              <div>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                  <li class="nav-item">
+                    <a class="nav-link mylink" aria-current="page" href="<%=newnav[i].link%>">
+                      <%=newnav[i].name%>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <%}%>
+              <%} %> 
+            <% if (role=="normaluser"){ %> 
+            <%for(i=0;i<newnav.length-2;i++){%>
+              <div>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                  <li class="nav-item">
+                    <a class="nav-link mylink" aria-current="page" href="<%=newnav[i].link%>">
+                      <%=newnav[i].name%>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <%}%>
+              <%} %>
+              <form class="d-flex ms-auto py-2">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success mybtn" type="submit">Search</button>
+              </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="topbanner">
+    <div class="container">
+
+      <h2 class="heading">
+        BOOK
+      </h2>
+    </div>
+
+  </div>
+  <div class="container">
+    <div class="Wrap">
+      <div class="panel">
+        <div class="row ">
+          <div class="col-md-2 col-sm-3 text-center">
+            <img src="/images/<%=book.img%>" alt="" srcset="" class="coverview">
+          </div>
+          <div class="col-md-10 col-sm-9">
+            <h3 class="head" style="text-align: left;">
+              <%=book.title%>
+            </h3>
+            <!-- <div class="col-xs-9"> -->
+            <div class="row">
+              <div class="col">
+                <h4><span class="label label-default">
+                    <%=book.author%>
+                  </span></h4>
+              </div>
+              <h4>
+                <span class="text-muted small">
+                  <%=book.genre%> .
+                </span>
+              </h4>
+            </div>
+            <!-- </div> -->
+
+          </div>
+        </div>
+        <br>
+
+      </div>
+
+
+
+    </div>
+  </div>
+  <br>
+  <div class="container">
+
+    <div class="row">
+      <h1>Follow Us</h1>
+      <div class="col">
+        <button class="btn btn-outline facebook">
+          <ion-icon name="logo-facebook"></ion-icon> Facebook
+        </button>
+        <button class="btn btn-outline twitter">
+          <ion-icon name="logo-twitter"></ion-icon> Twitter
+        </button>
+      </div>
+    </div>
+
+  </div>
+  <footer>
+    <div class="container">
+      <ion-icon name="logo-facebook" class="icon-2x"></ion-icon>
+      <ion-icon name="logo-twitter" class="icon-2x"></ion-icon>
+      <ion-icon name="logo-pinterest" class="icon-2x"></ion-icon>
+
+    </div>
+  </footer>
+  <script src="/js/validate.js"></script>
+  <script src="/js/bootstrap.min1.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
