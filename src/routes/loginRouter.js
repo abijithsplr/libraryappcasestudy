@@ -26,28 +26,38 @@ function login(nav) {
     userdata.findOne({ username: userlogin })
       .then(function (user) {
         if (user.password === userpassword) {
-
           var item = {
             username: user.username,
             password: user.password,
             role: user.role
           }
+          
           var currentuser = currentUserData(item);
+          // localStorage.setItem('user',user._id);
           currentuser.save();
-          res.redirect('/')
+          res.redirect('/');
         }
         else {
-          
-          res.redirect('/login');
+          res.render('login', {
+            nav,
+            title: 'Library',
+            head: 'Login',
+            newlink: '/signup',
+            role: 'guest',
+            error:true,
+            
+          });
         }
       }).catch(function () {
+        
         res.render('login', {
           nav,
           title: 'Library',
           head: 'Login',
           newlink: '/signup',
           role: 'guest',
-          error:true
+          error:true,
+          
         });
         // res.redirect('/login');
       })
