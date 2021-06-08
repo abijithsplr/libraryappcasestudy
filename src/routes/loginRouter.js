@@ -1,7 +1,9 @@
 const express = require("express");
+var cookieParser = require('cookie-parser');
 const loginRouter = express.Router();
 const userdata = require('../model/userData');
 const currentUserData = require('../model/currentuser');
+
 function login(nav) {
 
   loginRouter.get('/', (req, res) => {
@@ -31,7 +33,7 @@ function login(nav) {
             password: user.password,
             role: user.role
           }
-          
+         
           var currentuser = currentUserData(item);
           // localStorage.setItem('user',user._id);
           currentuser.save();

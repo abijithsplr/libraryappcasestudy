@@ -1,16 +1,35 @@
 const express = require("express");
 const authordata=require('../model/authordata');
 const addauthorRouter = express.Router();
+const currentUserData = require('../model/currentuser');
 const fileUpload = require('express-fileupload');
 function addauthor(newnav) {
 
   addauthorRouter.get('/', (req, res) => {
-    res.render('addauthor', {
-      newnav,
-      title: 'Library',
-      head: 'ADD AUTHOR',
-      action:""
-    });
+    currentUserData.find()
+          .then(function (data) {
+            if (data == "") {
+              // var userrole = "guest"
+              // res.render('books',
+              //   {
+              //     nav,
+              //     title: 'Library',
+              //     books,
+              //     role: userrole
+              //   });
+              res.redirect('/');
+            }
+            else {
+              var userrole = data[0].role;
+              res.render('addauthor', {
+                newnav,
+                title: 'Library',
+                head: 'ADD AUTHOR',
+                action:""
+              });
+            }
+          }).catch()
+    
   });
   addauthorRouter.post('/admin', (req, res) => {
     var item = {

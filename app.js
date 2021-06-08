@@ -1,10 +1,11 @@
 const express = require("express");
 
 const app = new express();
+var cookieParser = require('cookie-parser');
 const currentUserData = require('./src/model/currentuser');
 // const multer = require('multer');
 const fileUpload = require('express-fileupload');
-const port =process.env.PORT ||5000;
+const port = process.env.PORT || 5000;
 var nav = [
   {
     link: '/login',
@@ -53,15 +54,16 @@ const newnav = [
 ]
 
 
-const bookRouter=require('./src/routes/bookRouter')(newnav);
-const authorRouter=require('./src/routes/authorRouter')(newnav);
-const loginRouter=require('./src/routes/loginRouter')(nav);
-const addbookRouter=require('./src/routes/addbookRouter')(newnav);
-const addauthorRouter=require('./src/routes/addauthorRouter')(newnav);
-const logoutRouter=require('./src/routes/logoutRouter')();
+const bookRouter = require('./src/routes/bookRouter')(newnav);
+const authorRouter = require('./src/routes/authorRouter')(newnav);
+const loginRouter = require('./src/routes/loginRouter')(nav);
+const addbookRouter = require('./src/routes/addbookRouter')(newnav);
+const addauthorRouter = require('./src/routes/addauthorRouter')(newnav);
+const logoutRouter = require('./src/routes/logoutRouter')();
 // app.use(express.json());
 app.use((fileUpload()));
-app.use(express.urlencoded({extended:true}));
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
 // app.use(morgan('dev'));
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/src/views');
@@ -76,33 +78,35 @@ app.get('/', function (req, res) {
   // res.sendFile(__dirname+"/src/views/index.html");
   const currentUserData = require('./src/model/currentuser');
   currentUserData.find()
-.then(function(data){
-  if (data==""){
-    var userrole="guest"
-    res.render('index',
-    {
-      nav,
-      title: 'Library',
-      head:'Library',
-      role:userrole
-    });
-  }
-  else {
-    var userrole=data[0].role;
-    
-    // console.log(nav);
-    res.render('index',
-    {
-      newnav,
-      title: 'Library',
-      head:'Library',
-      role:userrole
-    });
-  }
-}).catch()
-  
+    .then(function (data) {
+      if (data == "") {
+        let userrole = "guest";
+        res.render('index',
+          {
+            nav,
+            title: 'Library',
+            head: 'Library',
+            role: userrole
+          });
+          console.log(userrole);
+      }
+      else {
+        let userrole = data[0].role;
+        console.log(userrole);
+        
+        // console.log(nav);
+        res.render('index',
+          {
+            newnav,
+            title: 'Library',
+            head: 'Library',
+            role: userrole
+          });
+      }
+    }).catch()
+
 });
 
-app.listen(port,()=>{
-  console.log("Server is ready at port number:"+port);
+app.listen(port, () => {
+  console.log("Server is ready at port number:" + port);
 });

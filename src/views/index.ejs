@@ -26,49 +26,51 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <% if (role=="admin"){ %> 
-          <%for(i=0;i<newnav.length;i++){%>
-            <div>
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-                <li class="nav-item">
-                  <a class="nav-link mylink" aria-current="page" href="<%=newnav[i].link%>">
-                    <%=newnav[i].name%>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <%}%>
-            <%} %> 
-          <% if (role=="normaluser"){ %> 
-          <%for(i=0;i<newnav.length-2;i++){%>
-            <div>
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-                <li class="nav-item">
-                  <a class="nav-link mylink" aria-current="page" href="<%=newnav[i].link%>">
-                    <%=newnav[i].name%>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <%}%>
-            <%} %> 
-          <% if (role=="guest"){ %> 
-          <%for(i=0;i<nav.length-4;i++){%>
-            <div>
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-                <li class="nav-item">
-                  <a class="nav-link mylink" aria-current="page" href="<%=nav[i].link%>">
-                    <%=nav[i].name%>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <%}%>
-            <%} %> 
-              <form class="d-flex ms-auto py-2">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success mybtn" type="submit">Search</button>
-              </form>
+          <% if (role=="admin" ){ %>
+            <%for(i=0;i<newnav.length;i++){%>
+              <div>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                  <li class="nav-item">
+                    <a class="nav-link mylink" aria-current="page" href="<%=newnav[i].link%>">
+                      <%=newnav[i].name%>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <%}%>
+                <%} %>
+                  <% if (role=="normaluser" ){ %>
+                    <%for(i=0;i<newnav.length-2;i++){%>
+                      <div>
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                          <li class="nav-item">
+                            <a class="nav-link mylink" aria-current="page" href="<%=newnav[i].link%>">
+                              <%=newnav[i].name%>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <%}%>
+                        <%} %>
+                          <% if (role=="guest" ||role==="" ){ %>
+                            <%for(i=0;i<nav.length-4;i++){%>
+                              <div>
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                                  <li class="nav-item">
+                                    <a class="nav-link mylink" aria-current="page" href="<%=nav[i].link%>">
+                                      <%=nav[i].name%>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                              <%}%>
+                                <%}%>
+
+                                  <form class="d-flex ms-auto py-2">
+                                    <input class="form-control me-2" type="search" placeholder="Search"
+                                      aria-label="Search">
+                                    <button class="btn btn-outline-success mybtn" type="submit">Search</button>
+                                  </form>
         </div>
       </div>
     </nav>
@@ -76,19 +78,80 @@
   <div class="topbanner">
     <div class="container">
 
-      <h2 class="heading">
-        <!-- <%=head%> -->
-      </h2>
+      <h1 class="heading">
+        <%=head%>
+      </h1>
     </div>
 
   </div>
   <div class="container">
     <div class="Wrap">
+      <% if (role=="guest" ){ %>
+        <h2 class="headtag">Login / Sign Up to access Books & Authors. </h2>
+        <br>
+        <% } else{%>
+          <h2 class="headtag">Explore</h2>
+          <br>
+          <% } %>
+            <% if (role=="guest" ){ %>
+              <div class="row justify-content-center">
+                <div class="col-md-3">
+                  <a href="/login" class="btn btn-outline-primary mycard">
+                    <ion-icon name="person-circle" class="iconl"></ion-icon>
+                    <div>LOGIN</div>
 
-      
+                  </a>
+                </div>
+                <div class="col-md-3">
+                  <a href="login/signup" class="btn btn-outline-success mycard">
+                    <ion-icon name="person-add" class="iconl"></ion-icon>
+                    <div>SIGNUP</div>
+                    
+                  </a>
+                </div>
+              </div>
+              <br>
+              <% } %>
+                <% if (role==="normaluser" || role==="admin" ){ %>
 
-      
-
+                  <div class="row justify-content-center">
+                    <div class="col-md-3">
+                      <a href="/books" class="btn btn-outline-default  mycard">
+                        <ion-icon name="book" class="iconl"></ion-icon>
+                        <div>BOOKS</div>
+                        
+                      </a>
+                    </div>
+                    <div class="col-md-3">
+                      <a href="/authors" class="btn btn-outline default  mycard">
+                        <ion-icon name="pencil-outline" class="iconl"></ion-icon>
+                        <div>AUTHORS</div>
+                        
+                      </a>
+                    </div>
+                  </div>
+                  <br>
+                  <% } %>
+                    <% if (role==="admin" ){ %>
+                      <div class="row justify-content-center">
+                        <div class="col-md-3">
+                          <a href="/addbook" class="btn btn-outline-default  mycard">
+                            <ion-icon name="book" class="iconl"></ion-icon>
+                            <ion-icon name="add-circle" class="text-success h4"></ion-icon>
+                            <div> ADD BOOK</div>
+                            
+                          </a>
+                        </div>
+                        <div class="col-md-3">
+                          <a href="/addauthor" class="btn btn-outline default  mycard">
+                            <ion-icon name="pencil-outline" class="iconl"></ion-icon>
+                            <ion-icon name="add-circle" class="text-success h4"></ion-icon>
+                            <div>ADD AUTHOR</div>
+                            
+                          </a>
+                        </div>
+                      </div>
+                      <% } %>
 
     </div>
   </div>

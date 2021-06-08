@@ -177,19 +177,61 @@ footer {
   vertical-align: baseline;
   border-radius: 0.25em;
 }
-.panel{
+.panel {
   padding-top: 15px;
   padding-bottom: 15px;
 }
-.content{
+.content {
   text-align: justify;
   line-height: 1.1;
 }
 .col-xs-9 {
   width: 80%;
 }
-.control{
+.control {
   margin-left: 20px;
   border-radius: 20px;
   width: 100px;
+}
+/* .contentbtn {
+  min-width: 33%;
+  margin-left: 97px;
+  border: 1px solid black;
+  border-radius: 25px;
+  height: 100px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.18);
+} */
+.headtag {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.mycard {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 40px 15px;
+  height: auto;
+  border: 1px solid black;
+  border-radius: 25px;
+  /* height: 100px; */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.18);
+  text-decoration: none;
+
+}
+.mycard:hover,.mycard:focus{
+  background: #000044;
+  color: white;
+}
+.mycard:hover .iconl, 
+.mycard:focus  .iconl{
+color: #fff;
+}
+.mycard .iconl {
+  font-size: 60px;
+  text-align: center;
+  color: #000044;
+}
+.mycard .iconl + ion-icon {
+  margin-left: -12px;
 }

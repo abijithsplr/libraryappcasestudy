@@ -4,8 +4,10 @@ const logoutRouter = express.Router();
 const currentUserData = require('../model/currentuser');
 function logout() {
   logoutRouter.get('/',(req,res)=>{
-    currentUserData.deleteOne().then()
-    res.redirect('/');
+    currentUserData.deleteOne().then(function(){
+      res.redirect('/');
+    })
+    
   });
   return logoutRouter;
 }

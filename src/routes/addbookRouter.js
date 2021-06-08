@@ -1,19 +1,38 @@
 const express = require("express");
 const addbookRouter = express.Router();
 const bookdata = require('../model/bookdata');
+const currentUserData = require('../model/currentuser');
 const fileUpload = require('express-fileupload');
 // const upload = multer({ dest: '/public/images' });
 
 function addbook(newnav) {
 
   addbookRouter.get('/', (req, res) => {
-    res.render('addbook', {
-      newnav,
-      title: 'Library',
-      head: 'ADD BOOK',
-      action: "add"
 
-    });
+    currentUserData.find()
+          .then(function (data) {
+            if (data == "") {
+              // var userrole = "guest"
+              // res.render('books',
+              //   {
+              //     nav,
+              //     title: 'Library',
+              //     books,
+              //     role: userrole
+              //   });
+              res.redirect('/');
+            }
+            else {
+              var userrole = data[0].role;
+              res.render('addbook', {
+                newnav,
+                title: 'Library',
+                head: 'ADD BOOK',
+                action: "add"
+          
+              });
+            }
+          }).catch()  
   });
 
   addbookRouter.post('/admin', (req, res) => {
