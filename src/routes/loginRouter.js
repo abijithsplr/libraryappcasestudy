@@ -1,5 +1,5 @@
 const express = require("express");
-var cookieParser = require('cookie-parser');
+
 const loginRouter = express.Router();
 const userdata = require('../model/userData');
 const currentUserData = require('../model/currentuser');

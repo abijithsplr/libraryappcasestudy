@@ -1,7 +1,7 @@
 const express = require("express");
 
 const app = new express();
-var cookieParser = require('cookie-parser');
+
 const currentUserData = require('./src/model/currentuser');
 // const multer = require('multer');
 const fileUpload = require('express-fileupload');
@@ -62,7 +62,6 @@ const addauthorRouter = require('./src/routes/addauthorRouter')(newnav);
 const logoutRouter = require('./src/routes/logoutRouter')();
 // app.use(express.json());
 app.use((fileUpload()));
-app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 // app.use(morgan('dev'));
 app.set('view engine', 'ejs');
@@ -92,7 +91,7 @@ app.get('/', function (req, res) {
       }
       else {
         let userrole = data[0].role;
-        console.log(userrole);
+        
         
         // console.log(nav);
         res.render('index',
